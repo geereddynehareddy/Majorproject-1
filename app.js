@@ -118,6 +118,9 @@ app.use((req,res,next)=>{
 // let registeredUser=await User.register(fakeUser,"helloworld");
 // res.send(registeredUser);
 // });
+app.get("/",(req,res)=>{
+    res.redirect("/listings");
+});
 app.use("/listings",listingses);
 app.use("/listings/:id/reviews",review);
 app.use("/",sign);
