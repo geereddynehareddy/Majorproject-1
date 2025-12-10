@@ -1,0 +1,80 @@
+<<%layout("/layout/boilerplate.ejs")%>
+
+<div class="row mt-3">
+  <div class="col-8 offset-2">
+
+    <h1>Edit your Listing</h1>
+
+    <form action="/listings/edit/<%= list._id %>?_method=PUT" 
+          method="POST" 
+          class="needs-validation" 
+          novalidate 
+          enctype="multipart/form-data">
+
+      <div class="mb-3 col-md-4">
+        <label for="title" class="form-label">Title:</label>
+        <input type="text" id="title" name="listings[title]" 
+               value="<%= list.title %>" class="form-control" required>
+      </div>
+
+      <div>
+        <div>Original Image</div>
+        <img src="<%= originalImageUrl %>" style="max-width:200px;" />
+      </div>
+
+      <div class="mb-3">
+        <label for="image" class="form-label">Upload New Image</label>
+        <input name="listings[image]" type="file" class="form-control"> 
+      </div>
+
+      <div class="mb-3 col-md-4">
+        <label for="price" class="form-label">Price:</label>
+        <input type="number" id="price" name="listings[price]" 
+               value="<%= list.price %>" class="form-control" required>
+      </div>
+
+      <div class="mb-3 col-md-4">
+        <label for="description" class="form-label">Description:</label>
+        <textarea id="description" 
+                  name="listings[description]" 
+                  class="form-control" rows="4" required>
+          <%= list.description %>
+        </textarea>
+      </div>
+
+      <div class="mb-3 col-md-4">
+        <label for="category" class="form-label">Category:</label>
+        <select id="category" name="listings[category]" class="form-control" required>
+          <option disabled>Select a category</option>
+          <option value="Beach" <%= list.category==="Beach" ? "selected":"" %>>Beach</option>
+          <option value="Mountains" <%= list.category==="Mountains" ? "selected":"" %>>Mountains</option>
+          <option value="City" <%= list.category==="City" ? "selected":"" %>>City</option>
+          <option value="Farms" <%= list.category==="Farms" ? "selected":"" %>>Farms</option>
+          <option value="Camping" <%= list.category==="Camping" ? "selected":"" %>>Camping</option>
+          <option value="Amazing Pools" <%= list.category==="Amazing Pools" ? "selected":"" %>>Amazing Pools</option>
+          <option value="Treehouses" <%= list.category==="Treehouses" ? "selected":"" %>>Treehouses</option>
+          <option value="Islands" <%= list.category==="Islands" ? "selected":"" %>>Islands</option>
+          <option value="Arctic" <%= list.category==="Arctic" ? "selected":"" %>>Arctic</option>
+          <option value="Boats" <%= list.category==="Boats" ? "selected":"" %>>Boats</option>
+          <option value="Domes" <%= list.category==="Domes" ? "selected":"" %>>Domes</option>
+        </select>
+      </div>
+
+      <div class="mb-3 col-md-4">
+        <label for="location" class="form-label">Location:</label>
+        <input type="text" id="location" name="listings[location]" 
+               value="<%= list.location %>" class="form-control" required>
+      </div>
+
+      <div class="mb-3 col-md-4">
+        <label for="country" class="form-label">Country:</label>
+        <input id="country" name="listings[country]" 
+               value="<%= list.country %>" class="form-control" required>
+      </div>
+
+      <button class="btn btn-dark edit-btn mt-3">Update Listing</button>
+
+    </form>
+
+  </div>
+</div>
